@@ -19,6 +19,7 @@ namespace smartrg.Helpers
         {
             Url = "http://35.240.136.227:9014";
             //Url = "http://192.168.1.38:9014";
+
         }
 
         public async Task<Models.GetLoginData> GetLogin(string login,string pwd)
