@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="smartrg.Tools.KeyboardSOPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Frame AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" 
+                   CornerRadius="5"      Padding="5" BackgroundColor="Silver" Opacity="0.8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            </Frame>
+
+            <Frame BackgroundColor="LightSkyBlue" CornerRadius="5" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.95,0.9,0.7" Padding="5">
+                <StackLayout>
+
+                    <Frame BackgroundColor="#1976D2">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label x:Name="lblProductname" HorizontalOptions="StartAndExpand" Text="สินค้า" TextColor="White" FontSize="Subtitle" />
+                                    <Label x:Name="lblProductunit" HorizontalOptions="StartAndExpand" Text="หน่วยนับ" TextColor="White" FontSize="Caption"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                    <ImageButton x:Name="btnScan" Source="ic_qrcode" HeightRequest="25" BackgroundColor="Transparent" IsVisible="false"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!--=========== Input Text box ===============-->
+                    <StackLayout Orientation="Horizontal" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"  Grid.Column="0">
+                                <Label HorizontalOptions="End" Text="จำนวน" TextColor="Gray" FontSize="Caption" />
+                                <Label x:Name="txtQty" Text="0" FontSize="Title" 
+                                   HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                                   BackgroundColor="White"  TextColor="Gray"
+                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                                <Label HorizontalOptions="End" Text="ราคา" TextColor="Gray" FontSize="Caption"/>
+                                <Label x:Name="txtAmount" Text="0" FontSize="Title" 
+                                   HorizontalTextAlignment="End"  VerticalTextAlignment="Center" 
+                                   BackgroundColor="White" TextColor="Gray"
+                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+                    <!--=========== Key board button ===============-->
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <!--=========== Row 0 ===============-->
+                            <Button x:Name="cal1" Text="1" Grid.Row="0" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal2" Text="2" Grid.Row="0" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal3" Text="3" Grid.Row="0" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calcls" Text="CLS" Grid.Row="0" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Red" FontAttributes="Bold" Clicked="calcls_Clicked"/>
+
+                            <!--=========== Row 1 ===============-->
+                            <Button x:Name="cal4" Text="4" Grid.Row="1" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal5" Text="5" Grid.Row="1" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal6" Text="6" Grid.Row="1" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="caldat" Text="-" Grid.Row="1" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="caldat_Clicked"/>
+
+                            <!--=========== Row 2 ===============-->
+                            <Button x:Name="cal7" Text="7" Grid.Row="2" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal8" Text="8" Grid.Row="2" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal9" Text="9" Grid.Row="2" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="caldot" Text="." Grid.Row="2" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="caldot_Clicked"/>
+
+                            <!--=========== Row 3 ===============-->
+                            <Button x:Name="calbackPro" Text="&lt;=" Grid.Row="3" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calbackPro_Clicked" />
+                            <Button x:Name="cal0" Text="0" Grid.Row="3" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calSearch" Text="สินค้า" Grid.Row="3" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calSearch_Clicked" />
+                            <Button x:Name="calNextPro" Text="=>" Grid.Row="3" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNextPro_Clicked"/>
+
+                            <!--=========== Row 4 ===============-->
+                            <Button x:Name="calQty" Text="จำนวน" Grid.Row="4" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calQty_Clicked"/>
+                            <Button x:Name="calCancel" Text="ยกเลิก" Grid.Row="4" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calCancel_Clicked"/>
+                            <Button x:Name="calOk" Text="ตกลง" Grid.Row="4" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calOk_Clicked"/>
+                            <Button x:Name="calPrice" Text="ราคา" Grid.Row="4" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calPrice_Clicked"/>
+
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout x:Name="StkSearch" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.9" IsVisible="false"
+                         Padding="5" BackgroundColor="WhiteSmoke"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" BackgroundColor="RoyalBlue" >
+                    <Label x:Name="lblSearchHeader" Text="ข้อมูลสินค้า" TextColor="White"
+                               HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="20,10" />
+                    <ImageButton x:Name="btnCloseSearch" Source="ic_failure" BackgroundColor="Transparent" HeightRequest="30" Margin="0,0,20,0" 
+                                         VerticalOptions="Center" HorizontalOptions="End" Clicked="btnCloseSearch_Clicked" StyleId="visit" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Spacing="0" Padding="0" Margin="0">
+                        <SearchBar x:Name="TxtSearch" Placeholder="ค้นหา" PlaceholderColor="LightGray"  TextColor="Gray" TextChanged="TxtSearch_TextChanged"
+                                               FontSize="Subtitle" CancelButtonColor="White" SearchButtonPressed="TxtSearch_SearchButtonPressed" />
+                    </StackLayout>
+                </StackLayout>
+
+                <ListView x:Name="ListSearshData" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" SeparatorColor="Silver"
+                          HasUnevenRows="True" CachingStrategy="RecycleElement" HeightRequest="200" ItemTapped="ListSearshData_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand">
+                                    <Label x:Name="lblProductName" Text="{Binding Productname}"  TextColor="Black"  
+                                                   HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                        <Label HorizontalOptions="End" TextColor="Gray"
+                                                Text="{Binding Price,StringFormat=' {0:F2} บาท / '} " />
+                                        <Label HorizontalOptions="End" TextColor="Gray" 
+                                                Text="{Binding Unitname} " />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

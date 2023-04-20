@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="smartrg.Tools.CalendarSelect">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.95,0.8" BackgroundColor="Red">
+
+                <Frame BackgroundColor="White" CornerRadius="5" Padding="0" Margin="0">
+                    <StackLayout>
+
+                        <!--Calendar-->
+                        <StackLayout x:Name="stkmain" Orientation="Vertical" Padding="0">
+
+                            <!--Next, Back Calendar-->
+                            <StackLayout x:Name="stk_headercalendra" Orientation="Horizontal"  BackgroundColor="RoyalBlue"
+                                         HorizontalOptions="FillAndExpand" Padding="10">
+                                <ImageButton x:Name="btnbackMonths" Source="ic_back" HeightRequest="30"
+                                             BackgroundColor="Transparent" HorizontalOptions="Start" Clicked="btnbackMonths_Clicked"/>
+                                <Label x:Name="lblCalendarHeader" Text="Month Name" HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="Center" FontSize="Small" TextColor="White"/>
+                                <ImageButton x:Name="btnnextMonths" Source="ic_back" HeightRequest="30" Rotation="180"
+                                             BackgroundColor=" Transparent" HorizontalOptions="End" Clicked="btnnextMonths_Clicked"/>
+                            </StackLayout>
+
+                            <!--Calendar -->
+                            <StackLayout x:Name="stk_Calendar" Orientation="Vertical" Spacing="0" Margin="5,0">
+
+                                <!--Su Mo Tu Wd Th Fr St-->
+                                <StackLayout x:Name="stk_title" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
+                                    <StackLayout x:Name="stk01" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl01" Text="Sun" TextColor="Firebrick" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk02" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl02" Text="Mon" HorizontalOptions="Center" TextColor="Gray" />
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk03" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl03" Text="Tue" HorizontalOptions="Center" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk04" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl04" Text="Web" HorizontalOptions="Center" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk05" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl05" Text="Thu" HorizontalOptions="Center" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk06" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl06" Text="Fri" HorizontalOptions="Center" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout x:Name="stk07" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="lbl07" Text="Sat" HorizontalOptions="Center" TextColor="Gray"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <!--Calendar  Data-->
+                                <!--<RefreshView  RefreshColor="HotPink">
+                                    --><!--<RefreshView IsRefreshing="{Binding Isbusy, Mode=OneWay}" Command="{Binding GetCalendar}" RefreshColor="HotPink">--><!--
+                                </RefreshView>-->
+
+
+                                <RefreshView x:Name="CalendaRefresh" RefreshColor="HotPink"   Refreshing="CalendaRefresh_Refreshing" >
+                                    <CollectionView x:Name="ClnView" Grid.Row="1" VerticalOptions="StartAndExpand" BackgroundColor="White"
+                                SelectionMode="Single" SelectionChanged="ClnView_SelectionChanged" >
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" Span="7" VerticalItemSpacing="1" HorizontalItemSpacing="1"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate >
+                                            <DataTemplate>
+                                                <Grid Padding="2" BackgroundColor="Transparent">
+                                                    <Frame Grid.Row="0" Opacity="0.8" BackgroundColor="{Binding Calendarcolor}" CornerRadius="5" />
+                                                    <Label  Grid.Row="0"  Text="{Binding Calendartext}" TextColor="{Binding Fontcolor}" 
+                                                        VerticalTextAlignment="Start" BackgroundColor="Transparent"
+                                                        HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" Margin="5,2" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                        <CollectionView.Footer>
+                                            <StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+                                                <Label x:Name="LblSelectDate" Text="เลือกวันที่ต้องการ" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" />
+                                                <StackLayout x:Name="StkSelectPeriod" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Padding="5" IsVisible="false">
+                                                    <Button x:Name="btnStart" Text="เริ่มต้น : 1/09/2020"  StyleId="0" 
+                                                    HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Green" TextColor="White" />
+                                                    <Button x:Name="btnEnd" Text="ถึง : 1/09/2020"  StyleId="1" 
+                                                    HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Gray" TextColor="White" />
+                                                </StackLayout>
+                                                <StackLayout x:Name="StkConfirmselect" Orientation="Horizontal" Spacing="0" >
+                                                    <Button x:Name="btnCancelPop" Text="ยกเลิก" HorizontalOptions="FillAndExpand" VerticalOptions="End"
+                                           CornerRadius="0" TextColor="White" BackgroundColor="RoyalBlue" Clicked="btnCancel_Clicked"/>
+                                                    <Button x:Name="btnSubmit" Text="ตกลง" HorizontalOptions="FillAndExpand" VerticalOptions="End" Opacity="0.95"
+                                           CornerRadius="0" TextColor="White" BackgroundColor="RoyalBlue" Clicked="btnSubmit_Clicked"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </CollectionView.Footer>
+                                    </CollectionView>
+                                </RefreshView>
+
+
+                            </StackLayout>
+
+
+                            <!--Calendar Button -->
+                            <BoxView HeightRequest="10"/>
+                            <ScrollView VerticalOptions="FillAndExpand">
+                            </ScrollView>
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

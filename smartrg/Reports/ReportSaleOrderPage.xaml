@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Reports.ReportSaleOrderPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0.5,0,1,0.08" AbsoluteLayout.LayoutFlags="All" Padding="10,0" >
+                <ImageButton x:Name="BtnMenu" Source="ic_menu" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="Start"  VerticalOptions="Center" Clicked="BtnMenu_Clicked" />
+                <Label x:Name="LblHeader" Text="ข้อมูลการสั่งขายสินค้า" TextColor="White" FontSize="Subtitle" LineBreakMode="TailTruncation" 
+                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="20,0" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.92" AbsoluteLayout.LayoutFlags="All"  VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="LblReportHeader" TextColor="RoyalBlue" Text="1 มีนาคม 20221 ถึง 7 มีนาคม 2022 " Margin="20,0"
+                           HorizontalOptions="FillAndExpand" FontSize="Small" />
+                    <ImageButton x:Name="BtnSearch" Source="ic_search" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center" Margin="5,0,30,0"/>
+                </StackLayout>
+                <CollectionView x:Name="ListData" SelectionMode="Single" SelectionChanged="ListData_SelectionChanged"  Margin="10,0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" >
+                                <Frame Grid.Row="0" BackgroundColor="Bisque" CornerRadius="10" Opacity="0.8"/>
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Margin="10,0">
+                                    <Image Source="ic_blank" Aspect="AspectFit" HeightRequest="30" HorizontalOptions="Start" 
+                                           VerticalOptions="CenterAndExpand" />
+
+                                    <Label  Text="{Binding Showday}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation"/>
+                                    <StackLayout  Margin="10,0" HorizontalOptions="End">
+                                        <Label  Text="{Binding Amount,StringFormat='{0:#,##0.00} บาท'}" TextColor="Black"  VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End"  />
+                                        <Label  Text="{Binding TotalSO,StringFormat='{0} รายการ'}" TextColor="Black"  VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro"/>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

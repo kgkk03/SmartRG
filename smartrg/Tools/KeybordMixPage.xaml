@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="smartrg.Tools.KeybordMixPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Frame BackgroundColor="LightSkyBlue" CornerRadius="5" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.95,0.9,0.6" Padding="5">
+                <StackLayout>
+                    <Frame BackgroundColor="#1976D2">
+                        <StackLayout HorizontalOptions="FillAndExpand" >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
+                                    <Label x:Name="LblProductname" HorizontalOptions="StartAndExpand" Text="สินค้า" TextColor="White" FontSize="Subtitle" />
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                        <Label x:Name="LblProductcode" HorizontalOptions="Start" 
+                                               Text="รหัสสินค้า" TextColor="White" FontSize="Caption" HorizontalTextAlignment="Start"/>
+                                        <Label x:Name="LblProductprice" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"
+                                               Text="(0.00 บาท)" TextColor="White" FontSize="Caption"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <ImageButton x:Name="btnScan" Source="ic_qrcode" HeightRequest="25" HorizontalOptions="End" IsVisible="false"
+                                             BackgroundColor="Transparent" Clicked="btnScan_Clicked"/>
+
+                            </StackLayout>
+
+                            <SearchBar Placeholder="ค้นหา" PlaceholderColor="White" TextColor="White" IsVisible="false"
+                                           FontSize="Subtitle" CancelButtonColor="White" HorizontalOptions="StartAndExpand" />
+                        </StackLayout>
+                    </Frame>
+
+
+                    <StackLayout Orientation="Horizontal" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
+                            <Label  x:Name="LblDisplay" Text="uncheck" TextColor="Gray" FontSize="Subtitle"  HorizontalOptions="EndAndExpand"  Margin="0,0,20,0"/>
+
+                            <StackLayout  x:Name="Stkinput" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <Label x:Name="txtQtyitem" Text="Stock" FontSize="Title" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                                       BackgroundColor="Transparent"  HorizontalOptions="Start" VerticalOptions="FillAndExpand" TextColor="Gray" Margin="20,0"/>
+
+                                <Label x:Name="txtQty" Text="0" FontSize="Title" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                                       BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="Gray"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                            <!--=========== Row 0 ===============-->
+                            <Button x:Name="cal1" Text="1" Grid.Row="0" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal2" Text="2" Grid.Row="0" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal3" Text="3" Grid.Row="0" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calcls" Text="CLS" Grid.Row="0" Grid.Column="3" Grid.RowSpan="3"
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Red" FontAttributes="Bold" Clicked="calcls_Clicked"/>
+
+                            <!--=========== Row 1 ===============-->
+                            <Button x:Name="cal4" Text="4" Grid.Row="1" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal5" Text="5" Grid.Row="1" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal6" Text="6" Grid.Row="1" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Opacity="0.5" IsVisible="false"
+                                    FontSize="Medium" BackgroundColor="LightGray"  TextColor="Black" FontAttributes="Bold" />
+
+                            <!--=========== Row 2 ===============-->
+                            <Button x:Name="cal7" Text="7" Grid.Row="2" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal8" Text="8" Grid.Row="2" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal9" Text="9" Grid.Row="2" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"/>
+                            <Button Grid.Row="2" Grid.Column="3" IsVisible="false"
+                                    FontSize="Medium" BackgroundColor="LightGray" TextColor="Black" FontAttributes="Bold" />
+
+                            <!--=========== Row 3 ===============-->
+                            <Button x:Name="calback" Text="Back" Grid.Row="3" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calback_Clicked" />
+                            <Button x:Name="cal0" Text="0" Grid.Row="3" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calOk" Text="Ok" Grid.Row="3" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calOk_Clicked" />
+                            <Button x:Name="calNext" Text="Next" Grid.Row="3" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNext_Clicked"/>
+
+                            <!--=========== Row Select (2) ===============-->
+                            <StackLayout x:Name="stkSelect" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="4"
+                                         Orientation="Horizontal" BackgroundColor="LightGray" IsVisible="true" >
+                                
+                            </StackLayout>
+                            
+                            
+                            <StackLayout x:Name="stkSale"  Grid.Row="2" Grid.Column="0" Orientation="Horizontal" BackgroundColor="White" IsVisible="true" >
+                                <Image x:Name="imgSale" Source="ic_check" HeightRequest="20" Margin="5" IsVisible="false" />
+                                <Label x:Name="lblSale" Text="ไม่ขาย" FontAttributes="Bold" FontSize="Medium"
+                                       HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <Button x:Name="calSale" Grid.Row="2" Grid.Column="0" IsVisible="false" 
+                                    FontSize="Medium" BackgroundColor="Transparent"  TextColor="Black" FontAttributes="Bold" Clicked="calSale_Clicked"/>
+
+                            <StackLayout x:Name="stkLost" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" BackgroundColor="White" IsVisible="true" >
+                                <Image x:Name="imgLost" Source="ic_check" HeightRequest="20" Margin="5" IsVisible="false" />
+                                <Label x:Name="lblLost" Text="หมด" FontAttributes="Bold" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <Button x:Name="calLost"  Grid.Row="2" Grid.Column="1" IsVisible="false" 
+                                    FontSize="Medium" BackgroundColor="Transparent" TextColor="Black" FontAttributes="Bold" Clicked="calLost_Clicked"/>
+
+                            <StackLayout x:Name="stkStock" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal"   BackgroundColor="LightGreen" IsVisible="true" >
+                                <BoxView HorizontalOptions="StartAndExpand" />
+                                <Image x:Name="imgStock" Source="ic_check" HeightRequest="20" Margin="5" HorizontalOptions="Center"  />
+                                <Label x:Name="lblStock" Text="มีขาย" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" 
+                                       FontAttributes="Bold" FontSize="Medium" />
+                                <BoxView HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                            <Button x:Name="calStock"  Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  IsVisible="false" 
+                                    FontSize="Medium" BackgroundColor="Transparent" TextColor="Black" FontAttributes="Bold" Clicked="calStock_Clicked"/>
+
+                            <!--<Button x:Name="calCheck" Text="" Grid.Row="2" Grid.Column="3"  IsVisible="false" 
+                                    FontSize="Medium" BackgroundColor="LightGray" TextColor="Black" FontAttributes="Bold" />-->
+
+
+
+
+
+
+                        </Grid>
+
+
+
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

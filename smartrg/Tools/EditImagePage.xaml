@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Tools.EditImagePage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Frame BackgroundColor="White" Opacity="0.6" CornerRadius="10"
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" AbsoluteLayout.LayoutFlags="All"/>
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.95" AbsoluteLayout.LayoutFlags="All" 
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+
+                <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" >
+                    <ImageButton x:Name="Btnback"  Source ="ic_back"   HorizontalOptions="Start" VerticalOptions="Center" 
+                            HeightRequest="25" BackgroundColor="Transparent" Clicked="Btnback_Clicked" />
+                    <Label x:Name="LblHeader" Text="แก้ไขข้อมูล" TextColor="RoyalBlue" FontSize="Subtitle" FontAttributes="Bold" 
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                    <ImageButton  x:Name="BtnSave"  Source="ic_send" Clicked="BtnSave_Clicked"
+                                  HeightRequest="25" BackgroundColor="Transparent" HorizontalOptions="End"/>
+                </StackLayout>
+
+                <Picker x:Name="PikImagetype" ItemDisplayBinding="{Binding Display}" Title="ระบุประเภทรูปภาพ"
+                        HorizontalOptions="FillAndExpand" SelectedIndexChanged="PikImagetype_SelectedIndexChanged" />
+
+                <ImageButton x:Name="MyImage" Source="no_image" Clicked="MyImage_Clicked" BackgroundColor="Transparent"
+                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+
+
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

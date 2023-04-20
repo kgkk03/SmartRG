@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tools="clr-namespace:smartrg.Tools"
+             xmlns:local="clr-namespace:smartrg.Picking"
+             x:Class="smartrg.Picking.TabReturnPage">
+    <tools:BackPage Title="กลับ" IconImageSource="ic_logout"/>
+    <local:ReturnPage  IconImageSource="ic_return" Title="คืน"/>
+    <local:ReturnPickingPage  IconImageSource="ic_picking" Title="เบิก"/>
+    <local:ReturnSalePage  IconImageSource="mnu_cashsale" Title="ขาย"/>
+</TabbedPage>

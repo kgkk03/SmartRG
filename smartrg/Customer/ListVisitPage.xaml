@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Customer.ListVisitPage">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="AblMain" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!-- ============= Header Title ============= -->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.08" AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="15,10,10,0" Spacing="0">
+                    <Label x:Name="LblTitle" Text="ข้อมูลการเข้าพบ" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" TextColor="Black" CharacterSpacing="1"/>
+                    <Label x:Name="LblType" Text="Type Name" FontSize="Micro" TextColor="Gray" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+                    <Label  Text=": " FontSize="Micro" TextColor="Gray" HorizontalOptions="End" VerticalOptions="End" />
+                    <Label x:Name="LblCode" Text="customercode" FontSize="Micro" TextColor="Gray" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+
+
+                <!--Avartar-->
+                <Frame BackgroundColor="AntiqueWhite" Padding="15,10">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="10">
+                                <controls:CircleImage x:Name="ImgCustomer" HorizontalOptions="Start" BorderColor="White" BorderThickness="1" Source="ic_customer" Aspect ="AspectFill" HeightRequest="60" WidthRequest="60"/>
+                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="2">
+                                    <Label x:Name="LblName" Text="Customer name (Type)" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="Black" LineBreakMode="TailTruncation"/>
+                                    <Label x:Name="LblAddress" Text="Address" HorizontalOptions="FillAndExpand" TextColor="#666666" CharacterSpacing="1" FontSize="Micro" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <!--Visit Total-->
+                            <Grid>
+                                <Image Grid.Column="0" Source="ic_tagcount" WidthRequest="99" BackgroundColor="Transparent" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+                                <Label x:Name="lblVisitCount" Grid.Column="0" Text="-" FontSize="Caption" FontAttributes="Bold" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <!--Detail-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,0.97,0.85" AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" Spacing="0">
+                <Label Text="ยังไม่เปิดให้บริการ" TextColor="#666666" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                <CollectionView x:Name="ListData" SelectionMode="Single" SelectionChanged="ListData_SelectionChanged" Margin="10,0" IsVisible="false">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0,10" ColumnDefinitions="50,auto,*" HorizontalOptions="FillAndExpand">
+                                <Image Source="{Binding Statusicon}" Grid.Column="0" Aspect="AspectFit" HeightRequest="25" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                <Label Text="{Binding ShowTime}" Grid.Column="1" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
+                                <StackLayout Orientation ="Horizontal" Grid.Column="2" HorizontalOptions="FillAndExpand" >
+                                    <Label  Text="{Binding Visittype}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

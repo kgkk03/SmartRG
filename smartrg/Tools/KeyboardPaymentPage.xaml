@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="smartrg.Tools.KeyboardPaymentPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Frame AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" 
+                   CornerRadius="5"      Padding="5" BackgroundColor="Silver" Opacity="0.8" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            </Frame>
+            <Frame BackgroundColor="LightSkyBlue" CornerRadius="5" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.95,0.9,0.7" Padding="5">
+                <StackLayout>
+
+                    <!--=========== Product Display ===============-->
+                    <Frame BackgroundColor="#1976D2">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label x:Name="lblTotalAmount" HorizontalOptions="StartAndExpand" Text="ยอดชำระ : 0.00 บาท" TextColor="White" FontSize="Caption"/>
+                                    <Label x:Name="lblLastPayment" HorizontalOptions="StartAndExpand" Text="ชำระแล้ว : 0.00 บาท" TextColor="White" FontSize="Caption" LineBreakMode="TailTruncation"/>
+                                    <Label x:Name="lblBalance" HorizontalOptions="StartAndExpand"  Text="คงเหลือ : 0.00 บาท"  TextColor="White" FontSize="Subtitle" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                    <ImageButton x:Name="btnPaymentImg" Source="no_photo" HeightRequest="50" BackgroundColor="Transparent"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <!--=========== Input Text box ===============-->
+                    <StackLayout Orientation="Horizontal" IsEnabled="False" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"  Grid.Column="0">
+                                <Label x:Name="lblPayType"  HorizontalOptions="End"  Text="ประเภทชำระ" VerticalOptions="EndAndExpand" TextColor="Gray" FontSize="Subtitle" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Grid.Column="1">
+                                <Label  x:Name="lblPayBank" HorizontalOptions="End" Text="" TextColor="Gray" FontSize="Caption" LineBreakMode="TailTruncation"/>
+                                <Label x:Name="txtPayment" Text="0" FontSize="Title" 
+                                   HorizontalTextAlignment="End"  VerticalTextAlignment="Center" 
+                                   BackgroundColor="White" TextColor="Gray"
+                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+                    <!--=========== Key board button ===============-->
+                    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <!--=========== Row 0 ===============-->
+                            <Button x:Name="cal1" Text="1" Grid.Row="0" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal2" Text="2" Grid.Row="0" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal3" Text="3" Grid.Row="0" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calcls" Text="CLS" Grid.Row="0" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Red" FontAttributes="Bold" Clicked="calcls_Clicked"/>
+
+                            <!--=========== Row 1 ===============-->
+                            <Button x:Name="cal4" Text="4" Grid.Row="1" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal5" Text="5" Grid.Row="1" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal6" Text="6" Grid.Row="1" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calqr" Text="QR" Grid.Row="1" Grid.Column="3" 
+                                    FontSize="Medium" BackgroundColor="LightPink" TextColor="Black" FontAttributes="Bold" StyleId="4" Clicked="calPaytype_Clicked" />
+
+                            <!--=========== Row 2 ===============-->
+                            <Button x:Name="cal7" Text="7" Grid.Row="2" Grid.Column="0" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal8" Text="8" Grid.Row="2" Grid.Column="1" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="cal9" Text="9" Grid.Row="2" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="calTransfer" Text="โอน" Grid.Row="2" Grid.Column="3" 
+                                     FontSize="Medium" BackgroundColor="LightPink" TextColor="Black" FontAttributes="Bold" StyleId="1"  Clicked="calPaytype_Clicked"/>
+
+
+                            <!--=========== Row 3 ===============-->
+                            <Button x:Name="calCredit" Text="Cr." Grid.Row="3" Grid.Column="0" 
+                                     FontSize="Medium" BackgroundColor="LightPink" TextColor="Black" FontAttributes="Bold" StyleId="3"  Clicked="calPaytype_Clicked" />
+                            <Button x:Name="cal0" Text="0" Grid.Row="3" Grid.Column="1" 
+                                     FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold"  Clicked="calNumber_Clicked"/>
+                            <Button x:Name="caldot" Text="." Grid.Row="3" Grid.Column="2" 
+                                    FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="caldot_Clicked"/>
+
+
+                            <Button x:Name="calCheque" Text="เช็ค" Grid.Row="3" Grid.Column="3" 
+                                     FontSize="Medium" BackgroundColor="LightPink" TextColor="Black" FontAttributes="Bold"  StyleId="2"  Clicked="calPaytype_Clicked"/>
+
+                            <!--=========== Row 4 ===============-->
+                            <Button x:Name="calBank" Text="ธนาคาร" Grid.Row="4" Grid.Column="0" 
+                                     FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calBank_Clicked"/>
+                            <Button x:Name="calCancel" Text="ยกเลิก" Grid.Row="4" Grid.Column="1" 
+                                     FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calCancel_Clicked"/>
+                            <Button x:Name="calOk" Text="ตกลง" Grid.Row="4" Grid.Column="2" 
+                                     FontSize="Medium" BackgroundColor="White" TextColor="Black" FontAttributes="Bold" Clicked="calOk_Clicked"/>
+                            <Button x:Name="calChash" Text="เงินสด" Grid.Row="4" Grid.Column="3" 
+                                     FontSize="Medium" BackgroundColor="LightGreen" TextColor="Black" FontAttributes="Bold"  StyleId="0"  Clicked="calPaytype_Clicked"/>
+
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame x:Name="StkQRCode" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" IsVisible="false"
+                   CornerRadius="5" Padding="5" BackgroundColor="LightBlue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                    <ImageButton x:Name="BtnCloseQR" Source="ic_uncheck" HorizontalOptions="End" VerticalOptions="Start" Clicked="BtnCloseQR_Clicked"/>
+                    <Image x:Name="ImgQRCode" Source="no_image" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+            </Frame>
+            
+            <Frame x:Name="StkBank" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" IsVisible="false"
+                   CornerRadius="5" Padding="5" BackgroundColor="LightBlue" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="ListBank" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" 
+                          HasUnevenRows="True" CachingStrategy="RecycleElement" 
+                          SeparatorColor="Transparent"  ItemTapped="ListBank_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <StackLayout Orientation="Horizontal" Padding="0,5" 
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                            <Frame x:Name="FraBkData" Grid.Column="0" BackgroundColor="RoyalBlue" CornerRadius="10" 
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="0.5" BorderColor="DarkGray"/>
+
+                                            <StackLayout Grid.Column="0" Orientation="Vertical"  Padding="10,0"
+                                                 HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                                <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                                    <Label Text="{Binding Bankname}" TextColor="White" FontSize="Subtitle" 
+                                                    HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Button x:Name="btnCancelBank" Text="ไม่เลือกธนาคาร" TextColor="White" FontAttributes="Bold" BackgroundColor="LightPink"
+                            CornerRadius="10"  HorizontalOptions="FillAndExpand" Clicked="btnCancelBank_Clicked"   />
+                        <Button x:Name="btnAddBank" Text="ตกลง" TextColor="White" FontAttributes="Bold" BackgroundColor="LightGreen"
+                            CornerRadius="10"  HorizontalOptions="FillAndExpand"  Clicked="btnAddBank_Clicked" />
+                    </StackLayout>
+                </StackLayout>
+
+            </Frame>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

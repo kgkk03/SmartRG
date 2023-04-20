@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Helpers="clr-namespace:smartrg.Helpers"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
+             BackgroundImageSource="bg_page" 
+             x:Class="smartrg.VisitStock.HyperStockPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Helpers:ConvertCheckImage x:Key="ConvertCheckImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.25" AbsoluteLayout.LayoutFlags="All" 
+                         BackgroundColor="AntiqueWhite" Opacity="0.6"/>
+
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.25" AbsoluteLayout.LayoutFlags="All" Padding="10" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label x:Name="LblHeader" Text="นับสต็อกสินค้า" TextColor="RoyalBlue" FontSize="Subtitle" LineBreakMode="TailTruncation" 
+                       HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Margin="20,0" HorizontalTextAlignment="Center"/>
+
+                    <ImageButton x:Name="BtnSend" Source="ic_send" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center" Margin="5,0,20,0" Clicked="BtnSend_Clicked"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <controls:CircleImage x:Name="ImgCustomer"  HorizontalOptions="Start"
+                     Source="avatar" Aspect ="AspectFit"  HeightRequest="40" WidthRequest="40" Margin="20,0,0,0"/>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0">
+                        <Label x:Name="LblCustname" Text="Customer name (Type)" VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Start"  TextColor="Black" LineBreakMode="TailTruncation"/>
+                        <Label x:Name="LblAddress" Text="Address............" HorizontalOptions="FillAndExpand"
+                                   FontSize="Micro" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  
+                                   TextColor="Black" LineBreakMode="TailTruncation" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="20,0" VerticalOptions="EndAndExpand">
+                    <Label x:Name="LblWorksumary" TextColor="RoyalBlue" Text=" 0 / 10" FontSize="Micro"
+                           HorizontalOptions="EndAndExpand" VerticalTextAlignment="End" HorizontalTextAlignment="End" />
+                </StackLayout>
+
+                <Grid ColumnDefinitions="*,30,30,30,30" VerticalOptions="End">
+                    <Label Grid.Column="0" Text="ชื่อสินค้า" TextColor="Black" FontSize="Caption" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Column="1" Text="ราคา" TextColor="Black" FontSize="Caption" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Column="2" TextColor="Black" Text="มี" FontSize="Micro" FontAttributes="Bold" WidthRequest="30"
+                           HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+
+                    <Label Grid.Column="3" TextColor="Black" Text="ขาด" FontSize="Micro" FontAttributes="Bold" WidthRequest="30"
+                           HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+
+                    <Label Grid.Column="4" TextColor="Black" Text="ไม่ขาย" FontSize="Micro" FontAttributes="Bold" WidthRequest="30"
+                           HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+
+
+                </Grid>
+
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.75" AbsoluteLayout.LayoutFlags="All"  
+                         VerticalOptions="FillAndExpand" >
+
+                <CollectionView x:Name="ListData" SelectionMode="Single"  Margin="10,0" IsEnabled="{Binding CanEdit}" >
+                    <CollectionView.ItemsLayout  >
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate >
+                            <Grid RowDefinitions="*" ColumnDefinitions="*,30,30,30,30" Padding="0,5">
+                                <Image Grid.Column="0" Source="{Binding Icon}" HeightRequest="10" VerticalOptions="CenterAndExpand" IsVisible="false" />
+                                <Label Grid.Column="0" Text="{Binding Productname}" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="Black" LineBreakMode="WordWrap" />
+                                <Label Grid.Column="1" Text="{Binding Price,StringFormat='{0}'}" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="Black"  />
+
+                                <ImageButton Grid.Column="2" x:Name="BtnStock" WidthRequest="20" VerticalOptions="Center" IsEnabled="{Binding Canedit}"
+                                             Source="{Binding Stock,Converter={StaticResource ConvertCheckImage}}" Clicked="BtnStock_Clicked" />
+                                <ImageButton Grid.Column="3" x:Name="BtnLostStock" WidthRequest="20" VerticalOptions="Center" IsEnabled="{Binding Canedit}"
+                                             Source="{Binding Lost,Converter={StaticResource ConvertCheckImage}}" Clicked="BtnLostStock_Clicked"  />
+                                <ImageButton Grid.Column="4" x:Name="BtnUnSale" WidthRequest="20" VerticalOptions="Center" IsEnabled="{Binding Canedit}"
+                                             Source="{Binding Unsale,Converter={StaticResource ConvertCheckImage}}" Clicked="BtnUnSale_Clicked" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </StackLayout>
+
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." 
+                       HorizontalOptions="CenterAndExpand" TextColor="White" HorizontalTextAlignment="Center"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

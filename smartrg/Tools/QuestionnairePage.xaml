@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="smartrg.Tools.QuestionnairePage">
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White"
+                         AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.98,0.98" Opacity="0.8">
+
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.5,0.9,0.8">
+
+                <Frame BackgroundColor="White"  CornerRadius="5" BorderColor="Gray"
+                       Padding="0" Margin="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                    <StackLayout Padding="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <!--================ คำถาม ==================================-->
+
+                        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" >
+                            <Label x:Name="lblTitle" Text="ข้อที่ 1." VerticalOptions="End" FontSize="Caption"
+                               TextColor="Gray" HorizontalOptions="EndAndExpand" CharacterSpacing="2"/>
+                        </StackLayout>
+
+                        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" >
+                            <Label x:Name="lblQuestion" Text="คำถาม...." VerticalOptions="Start" FontSize="Subtitle" LineBreakMode="WordWrap"
+                               TextColor="Gray" HorizontalOptions="StartAndExpand" CharacterSpacing="2"/>
+                        </StackLayout>
+
+
+                        <!--================ คำตอบ ==================================-->
+
+                        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" IsVisible="true">
+                            <Label x:Name="lblQtype" Text="เลือกคำตอบ" VerticalOptions="End" FontSize="Caption"
+                               TextColor="Gray" HorizontalOptions="EndAndExpand" CharacterSpacing="2"/>
+                        </StackLayout>
+
+
+                        <!--================ เลือก 1 คำตอบ ==================================-->
+                        <StackLayout x:Name="StkAnswerSelect"  IsVisible="false" BackgroundColor="Transparent"
+                                     VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
+                            <ListView x:Name="listAnswer" BackgroundColor="Transparent"
+                                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                <Label Text="{Binding Description}" VerticalOptions="Center" TextColor="Gray"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                        <!--================ เลือก หลายคำตอบ ==================================-->
+                        <StackLayout x:Name="StkAnswerMultiSelect"  IsVisible="false"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
+                            <ListView x:Name="listMultiAnswer" BackgroundColor="Transparent"
+                                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                <CheckBox IsChecked ="{Binding Check}" VerticalOptions="Center" />
+                                                <Label Text="{Binding Obj.Description}" VerticalOptions="Center" TextColor="Gray"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </StackLayout>
+
+                        <!--================ เลือก เวลา ==================================-->
+                        <StackLayout x:Name="StkAnswerTime"  IsVisible="true"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Label Text="ระบุเวลา" VerticalOptions="Center" FontSize="Caption"
+                               TextColor="Gray" HorizontalOptions="EndAndExpand" CharacterSpacing="2" />
+                            <Picker x:Name="PickerTime" Title="ระบุเวลา" VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                               ItemDisplayBinding="{Binding Description}" TextColor="Gray" TitleColor="Gray" BackgroundColor="WhiteSmoke"  />
+                        </StackLayout>
+
+                        <!--================ เลือก ช่วงเวลา ==================================-->
+                        <StackLayout x:Name="StkAnswerPeriod"  IsVisible="true"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Label Text="เวลาเริ่มต้น" VerticalOptions="Center" FontSize="Caption"
+                                   TextColor="Gray" HorizontalOptions="StartAndExpand" CharacterSpacing="2" />
+                            <Picker x:Name="PickerStart" Title="เวลาเริ่มต้น" VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                                    ItemDisplayBinding="{Binding Description}" TextColor="Gray" TitleColor="Gray" BackgroundColor="WhiteSmoke"  />
+
+                            <Label Text="เวลาสิ้นสุด" VerticalOptions="Center" FontSize="Caption"
+                                   TextColor="Gray" HorizontalOptions="StartAndExpand" CharacterSpacing="2"/>
+                            <Picker x:Name="PickerFinish" Title="เวลาสิ้นสุด" VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                                    ItemDisplayBinding="{Binding Description}" TextColor="Gray" TitleColor="Gray" BackgroundColor="WhiteSmoke" />
+                        </StackLayout>
+
+                        <!--================ บรรยาย ==================================-->
+                        <StackLayout x:Name="StkAnswerText"  IsVisible="false"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                            <Entry x:Name="TxtAnswerInput" Text="input answer" VerticalOptions="Start" HorizontalOptions="FillAndExpand" 
+                               TextColor="Gray" BackgroundColor="WhiteSmoke" FontSize="Small" Completed="txtInput_Completed"/>
+                        </StackLayout>
+
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" BackgroundColor="#White">
+                            <ImageButton x:Name="btnBack" Source="ic_back"  IsVisible="true" BackgroundColor="#White" 
+                                         HorizontalOptions="StartAndExpand" Clicked="btnBack_Clicked"/>
+                            <Button x:Name="btnCancel" Text="Cancel" TextColor="Goldenrod" FontSize="Subtitle" IsVisible="false" BackgroundColor="#White" 
+                                    HorizontalOptions="StartAndExpand" Clicked="btnCancel_Clicked"/>
+                            <Button x:Name="btnOk" Text="Ok" TextColor="Goldenrod" FontSize="Subtitle" IsVisible="true"  BackgroundColor="#White"
+                                    HorizontalOptions="CenterAndExpand" Clicked="btnOk_Clicked" />
+                            <ImageButton x:Name="btnNext" Source="ic_back" Rotation="180" IsVisible="true" BackgroundColor="#White" 
+                                         HorizontalOptions="EndAndExpand" Clicked="btnNext_Clicked"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="10"/>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

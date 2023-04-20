@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+             x:Class="smartrg.Profile.UpdateDataPage">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="AblMain" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.1,0.6,0.4" Spacing="0">
+                <BoxView/>
+                <Label x:Name="lblHeader" Text="กำลังเชื่อมต่อ" FontSize="Small" TextColor="WhiteSmoke" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                <Grid VerticalOptions="FillAndExpand">
+                    <control:ProgressRing x:Name="Prgdownload" VerticalOptions="FillAndExpand" RingProgressColor="#1976D2"
+                         RingBaseColor="#ebf5e4" RingThickness="10" AnimationLength="4000" AnimatedProgress="0"  />
+
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Label x:Name="LblPrgvalue" FontAttributes="Bold" FontSize="Large" VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand" TextColor="White" Text="Process"/>
+                        <Label x:Name="LblPrgunit" Text="" HorizontalTextAlignment="Center" TextColor="White" FontSize="Medium"/>
+                        <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5"
+                                     VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,0.1" 
+                         VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="5">
+                <ImageButton x:Name="btnBack" Source="ic_back" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="30" Clicked="btnBack_Clicked"/>
+                <Label x:Name="lblTitle" Text="อัพเดทข้อมูล" FontSize="Subtitle" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" TextColor="White"/>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.2,1,0.8,0.5" Spacing="0" VerticalOptions="CenterAndExpand">
+
+
+                <!-- ปรับปรุงข้อมูลระบบพื้นฐาน (Updatedata) -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                    <ActivityIndicator x:Name="aidwitdata" IsRunning="False" Color="LightGreen" HeightRequest="35"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+                    <Label x:Name="lblUpdatedata" Text="ปรับปรุงข้อมูลระบบพื้นฐาน " FontSize="Small" TextColor="Silver" 
+                           HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                </StackLayout>
+
+
+                <!-- ปรับปรุงข้อมูลสินค้า (Product) & (Customer) -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <ActivityIndicator x:Name="aidwitProduct" IsRunning="False"  Color="LightGreen" HeightRequest="35"
+                                       HorizontalOptions="Start" VerticalOptions="Center" />
+                    <Label x:Name="lblUpdateproduct" Text="ปรับปรุงข้อมูลสินค้า" FontSize="Small" TextColor="Silver"
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <!-- ปรับปรุงข้อมูลแผนงาน (Plan) -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <ActivityIndicator x:Name="aidwitPlan" IsRunning="False" VerticalOptions="Center" Color="LightGreen" HeightRequest="35"/>
+                    <Label x:Name="lblUpdatePlan" Text="ปรับปรุงข้อมูลแผนงาน" FontSize="Small" TextColor="Silver" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <!-- ปรับปรุงข้อมูลการทำงาน (Sale) -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <ActivityIndicator x:Name="aidwitSale" IsRunning="False" VerticalOptions="Center" Color="LightGreen" HeightRequest="35"/>
+                    <Label x:Name="lblUpdatesale" Text="ปรับปรุงข้อมูลการทำงาน" FontSize="Small" TextColor="Silver" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                </StackLayout>
+
+
+
+
+
+                <BoxView/>
+                <BoxView/>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,1,0.15" Spacing="0" VerticalOptions="CenterAndExpand">
+
+                <Button x:Name="btnUpdate" Text="อัพเดทข้อมูล" BackgroundColor="#1976D2" TextColor="White" Margin="40" Clicked="btnUpdate_Clicked"/>
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Customer.CustomerPage">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="AblMain" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <!-- ============= Header Title ============= -->
+            <Grid AbsoluteLayout.LayoutBounds="0.5,0,1,0.15" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Yellow">
+                <Image x:Name="imgBG" Grid.Row="0" BackgroundColor="Transparent" Source="icon" Aspect="AspectFill"/>
+                <Frame Grid.Row="0" BackgroundColor="Black" Opacity="0.69" CornerRadius="0"/>
+            </Grid>
+           
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.04" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Black" Opacity="0.3">
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="15,10,10,0" Spacing="0">
+                    <Label x:Name="LblTitle" Text="ข้อมูลร้านค้า" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" TextColor="White" CharacterSpacing="1"/>
+                    <Label x:Name="LblType" Text="Type Name" FontSize="Micro" TextColor="White" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+                    <Label  Text=": " FontSize="Micro" TextColor="White" HorizontalOptions="End" VerticalOptions="End" />
+                    <Label x:Name="LblCode" Text="customercode" FontSize="Micro" TextColor="White" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.05,1,0.1"  AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+                <!--Avartar-->
+                <Grid RowDefinitions="*" VerticalOptions="Start">
+                    <Frame Grid.Row="0" BackgroundColor="Transparent" Padding="15,10">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="10">
+                                    <controls:CircleImage x:Name="ImgCustomer" HorizontalOptions="Start" BorderColor="White" BorderThickness="1" Source="ic_customer" Aspect ="AspectFill" HeightRequest="60" WidthRequest="60"/>
+                                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="2">
+                                        <Label x:Name="LblName" Text="Customer name (Type)" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Start" TextColor="White" LineBreakMode="TailTruncation"/>
+                                        <Label x:Name="LblAddress" Text="Address" HorizontalOptions="FillAndExpand" 
+                                               TextColor="WhiteSmoke" CharacterSpacing="1" FontSize="Micro" VerticalTextAlignment="Center" 
+                                               HorizontalTextAlignment="Start" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <!--Map direction-->
+                                <ImageButton x:Name="BtnMapview" Source="ic_dection" HeightRequest="40" BackgroundColor="Transparent" HorizontalOptions="End" VerticalOptions="CenterAndExpand" Clicked="BtnNavigator_Clicked"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <!--Detail-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,0.97,0.84"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" Spacing="0">
+                <ScrollView BackgroundColor="Transparent">
+                    <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="5" >
+
+                        <!-- ============= Header ข้อมูลร้านค้า ==================-->
+                        <Grid x:Name="StkCustdetailHeader"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <pcview:PancakeView Grid.Column="0" CornerRadius="6" HeightRequest="40">
+                                <pcview:PancakeView.BackgroundGradientStops>
+                                    <pcview:GradientStopCollection>
+                                        <pcview:GradientStop Color= "#d2ac6a" Offset="0" />
+                                        <pcview:GradientStop Color="#d1ac6b" Offset="0.4" />
+                                        <pcview:GradientStop Color="#d1ac6b" Offset="0.5" />
+                                        <pcview:GradientStop Color="#e2d086" Offset="0.8" />
+                                        <pcview:GradientStop Color="#e2d086" Offset="1" />
+                                    </pcview:GradientStopCollection>
+                                </pcview:PancakeView.BackgroundGradientStops>
+
+                                <Label x:Name="LblCustdetailHeader" Text="ข้อมูลร้านค้า" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0"/>
+                            </pcview:PancakeView>
+                        </Grid>
+                        <!-- ============= Body ข้อมูลร้านค้า ==================-->
+                        <Grid x:Name="StkCustdetail" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+                            <Frame BackgroundColor="White" CornerRadius="6" Grid.Column="0" Grid.RowSpan="4" VerticalOptions="FillAndExpand" Opacity="0.69"/>
+                            <StackLayout  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="0"  Padding="10" Spacing="10">
+                                <Image x:Name="ImgCustype" Source="ic_cvs" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label x:Name="LblCustType" Text="Customer Type" TextColor="#666666" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontSize="Caption"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="1" Padding="10" Spacing="10">
+                                <Image Source="ic_phone" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label x:Name="LblCustPhone" Text="Customer Phone" TextColor="#666666" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Caption"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="2" Padding="10" Spacing="10">
+                                <Image Source="ic_home" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label x:Name="LblCustAddress" Text="Customer Address" TextColor="#666666" LineBreakMode="WordWrap"
+                                       HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Caption"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Grid.Row="3" Padding="10" Spacing="10">
+                                <Image Source="ic_location" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label x:Name="Lbllocation" Text="0.000000, 0.000000" TextColor="#666666" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Caption"/>
+                            </StackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="5"/>
+
+                        <!--============= Header ข้อมูลผู้ติดต่อ   ==================-->
+                        <Grid x:Name="StkContractHeader" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <pcview:PancakeView Grid.Column="0" CornerRadius="6" HeightRequest="40">
+                                <pcview:PancakeView.BackgroundGradientStops>
+                                    <pcview:GradientStopCollection>
+                                        <pcview:GradientStop Color= "#d2ac6a" Offset="0" />
+                                        <pcview:GradientStop Color="#d1ac6b" Offset="0.4" />
+                                        <pcview:GradientStop Color="#d1ac6b" Offset="0.5" />
+                                        <pcview:GradientStop Color="#e2d086" Offset="0.8" />
+                                        <pcview:GradientStop Color="#e2d086" Offset="1" />
+                                    </pcview:GradientStopCollection>
+                                </pcview:PancakeView.BackgroundGradientStops>
+
+                                <Label x:Name="lblContractHeader" Text="ข้อมูลผู้ติดต่อ" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0"/>
+                            </pcview:PancakeView>
+
+                            <ImageButton Grid.Column="0" Source="ic_phone" HeightRequest="20" HorizontalOptions="End" BackgroundColor="Transparent" Margin="0,0,10,0" Clicked="BtnPhone_Clicked" />
+                        </Grid>
+                        <!-- ============= Body ติดต่อ ==================-->
+                        <Grid x:Name="StkContract" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+                            <Frame BackgroundColor="White" CornerRadius="5" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="FillAndExpand" Opacity="0.69"/>
+                            <StackLayout  Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Grid.Row="0" Padding="10" Spacing="10">
+                                <Image Source="ic_contact" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label x:Name="LblContractName" Text="Contract name" TextColor="#666666" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" FontSize="Caption"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Grid.Row="1" Padding="10" Spacing="10">
+                                <Image Source="ic_contractphone" BackgroundColor="Transparent" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Start"  />
+                                <Label x:Name="LblContractPhone" Text="Contract phone" TextColor="#666666" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Caption"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout x:Name="StkBtnCheckin" VerticalOptions="EndAndExpand" Margin="20">
+                    <pcview:PancakeView  CornerRadius="5" >
+                        <pcview:PancakeView.BackgroundGradientStops>
+                            <pcview:GradientStopCollection>
+                                <pcview:GradientStop Color= "#d2ac6a" Offset="0" />
+                                <pcview:GradientStop Color="#e2d086" Offset="0.2" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.4" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.5" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.6" />
+                                <pcview:GradientStop Color="#e2d086" Offset="0.8" />
+                                <pcview:GradientStop Color="#d2ac6a" Offset="1" />
+                            </pcview:GradientStopCollection>
+                        </pcview:PancakeView.BackgroundGradientStops>
+
+                        <Button x:Name="BtnCheckin" Text="เข้าพบลูกค้า" Clicked="BtnCheckin_Clicked" CharacterSpacing="1" FontAttributes="Bold"  TextColor="White" BackgroundColor="Transparent" />
+                    </pcview:PancakeView>
+                </StackLayout>
+
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="smartrg.Visit.TodayMapPage">
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!-- Map-->
+            <maps:Map x:Name="map" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" BackgroundColor="Transparent"
+                          IsIndoorEnabled="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,0.05,0.07" Spacing="0" BackgroundColor="Transparent">
+                <StackLayout x:Name="StkTitle" Orientation="Horizontal" VerticalOptions="Start" 
+                             HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Padding="0,10">
+                    <ImageButton x:Name="Btnback"  Source ="ic_back"   HorizontalOptions="Start" VerticalOptions="Center" 
+                            HeightRequest="25" BackgroundColor="Transparent"   Clicked="Btnback_Clicked" Margin="10" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,0.85,0.2" Spacing="0" BackgroundColor="Transparent" Padding="10">
+                <CarouselView  x:Name="CvCustomer"  PeekAreaInsets="50" CurrentItemChanged="CvCustomer_CurrentItemChanged" Loop="False" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Frame BackgroundColor="LightGray" Opacity="0.6" />
+                                <StackLayout Margin="10" HorizontalOptions="FillAndExpand">
+                                    
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Image Source="{Binding Icon}" Aspect="AspectFit" 
+                                           HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Custname}"  FontAttributes="Bold" HorizontalOptions="StartAndExpand" 
+                                                   VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                        <ImageButton Source="ic_navigator" Aspect="AspectFit" VerticalOptions="Start"
+                                           HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" Clicked="Navigator_Clicked" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="LblShowtime" Text="{Binding Showtime}" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Details}"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Location}" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="WordWrap"/>
+
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

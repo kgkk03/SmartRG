@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="smartrg.Customer.CustomerMapPage">
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!-- Map-->
+            <maps:Map x:Name="map" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" BackgroundColor="Transparent"
+                          IsIndoorEnabled="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.1,0,0.1,0.1" Spacing="0" BackgroundColor="Transparent">
+                <StackLayout x:Name="StkTitle" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand"  BackgroundColor="Transparent" Padding="0,10">
+                    <Grid>
+                        <Frame Grid.Column="0" Grid.Row="0" CornerRadius="20" BackgroundColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <ImageButton x:Name="Btnback" Grid.Column="0" Grid.Row="0" Source ="ic_back" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" 
+                                     HeightRequest="40" WidthRequest="40" Padding="0,0,4,0" BackgroundColor="Transparent" Clicked="Btnback_Clicked" Margin="10" />
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,0.85,0.2" Spacing="0" BackgroundColor="Transparent" Padding="10">
+                <CarouselView  x:Name="CvCustomer"  PeekAreaInsets="50" CurrentItemChanged="CvCustomer_CurrentItemChanged" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Frame BackgroundColor="LightGray" Opacity="0.6" />
+                                <StackLayout Margin="10">
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Image Source="{Binding Icon}" Aspect="AspectFit" 
+                                           HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" />
+                                        <Label Text="{Binding Custname}"  FontAttributes="Bold" 
+                                    HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+
+                                        <ImageButton Source="ic_navigator" HeightRequest="20" WidthRequest="20" HorizontalOptions="End" Clicked="BtnNavigator_Clicked" />
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Image Source="ic_salemenu" HeightRequest="10" WidthRequest="10" />
+                                        <Label Text="{Binding Custgroupname}" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Image Source="ic_phone" HeightRequest="10" WidthRequest="10" />
+                                        <Label Text="{Binding Phone}" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+
+                                    <Label Text="{Binding Custaddress}" FontSize="Micro" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="WordWrap"/>
+
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

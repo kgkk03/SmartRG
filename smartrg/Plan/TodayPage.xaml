@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Plan.TodayPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0.5,0,1,0.08" AbsoluteLayout.LayoutFlags="All" Padding="10,0" HorizontalOptions="FillAndExpand">
+                <ImageButton x:Name="BtnMenu" Source="ic_menu" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="Start"  VerticalOptions="Center" Clicked="BtnMenu_Clicked" />
+                <Label x:Name="LblHeader" Text="แผนการทำงานวันนี้" TextColor="White" FontSize="Subtitle" LineBreakMode="TailTruncation" 
+                       HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Margin="20,0,0,0" HorizontalTextAlignment="Center"/>
+                <Label x:Name="LblTodayHeader" TextColor="White" VerticalOptions="CenterAndExpand"  HorizontalTextAlignment="Start"
+                       Text="1 มีนาคม 20221" HorizontalOptions="Start" FontSize="Subtitle" />
+                <ImageButton x:Name="BtnMapview" Source="ic_mapview" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="EndAndExpand"  VerticalOptions="Center" Margin="5,0,20,0" Clicked="BtnMapview_Clicked" />
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.92" AbsoluteLayout.LayoutFlags="All"  VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="ImgUser"  HorizontalOptions="Start"
+                     Source="avatar" Aspect ="AspectFit"  HeightRequest="80" WidthRequest="80" Margin="20,0,0,0"/>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="20,0">
+                        <Label x:Name="LblFullname" Text="Full name" VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Start"  TextColor="Black" CharacterSpacing="1" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                            <Label x:Name="LblTeamname" Text="Team (Role)" HorizontalOptions="FillAndExpand"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  
+                                   TextColor="Black" CharacterSpacing="1" />
+                            <Label x:Name="LblUserID" Text="User code" HorizontalOptions="End" FontSize="Micro"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="End"  
+                                   TextColor="Gray" CharacterSpacing="1" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <Label x:Name="LblNodata" Text="=== ยังไม่มีข้อมูลแผนงานวันนี้ ===" HorizontalOptions="FillAndExpand" 
+                       VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"  TextColor="Black" CharacterSpacing="1" />
+
+                <ListView x:Name="ListData" VerticalOptions="FillAndExpand" ItemTapped="ListData_ItemTapped"
+                          SeparatorVisibility="None" HasUnevenRows="True" >
+                    <!--ItemTapped="ListData_ItemTapped"-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell BindingContextChanged="ViewCell_BindingContextChanged" x:Name="ViewCellListView">
+                                <Grid ColumnDefinitions="70,60,*" RowDefinitions="55" HorizontalOptions="FillAndExpand">
+
+
+                                    <!--space time-->
+
+                                    <StackLayout Orientation="Horizontal" Grid.Column="0" Padding="10,0,0,0" VerticalOptions="Center">
+                                        <Image Source="{Binding Icon}" Aspect="AspectFit" HeightRequest="15" x:Name="imgIcon"
+                                           HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                                        <Label Text="" x:Name="lblVisitDate"
+                                        TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                                    </StackLayout>
+
+
+                                    <!--Status icon-->
+
+                                    <BoxView x:Name="linestatus" Grid.Column="1" BackgroundColor="Green" WidthRequest="1" HorizontalOptions="Center" VerticalOptions="Start"
+                                             Margin="0,0,0,20" IsVisible="true"/>
+                                    <BoxView x:Name="linestatusB" Grid.Column="1" BackgroundColor="Green" WidthRequest="1" HorizontalOptions="Center" VerticalOptions="End" Margin="0,20,0,0"/>
+                                    <Image x:Name="imgstatusicon" Grid.Column="1" Source="ic_onplan" WidthRequest="22" VerticalOptions="Center"/>
+
+
+                                    <!--space Detail visit-->
+
+                                    <StackLayout Orientation ="Horizontal" Grid.Column="2" Padding="0,0,5,0" VerticalOptions="Center" HorizontalOptions="Fill">
+
+                                        <StackLayout Spacing="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                            <Label Text="{Binding Custname}" TextColor="Black" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding Custcode}" TextColor="Black" VerticalOptions="Center" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+
+                                        <!--<Grid HorizontalOptions="End" ColumnDefinitions="auto">
+                                            <Frame Grid.Row="0" BackgroundColor="White" Opacity="0.69" HorizontalOptions="FillAndExpand" Padding="0,0" Margin="5,10"  CornerRadius="40"/>
+                                            <StackLayout Grid.Row="0" Spacing="0" Padding="20,0,20,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+                                                <Label Text="{Binding Groupname}" TextColor="Black"  VerticalOptions="Center" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding Details}" TextColor="Black" VerticalOptions="Center" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                            </StackLayout>
+                                        </Grid>-->
+
+                                    </StackLayout>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--<CollectionView x:Name="ListData" SelectionMode="Single" SelectionChanged="ListData_SelectionChanged"  Margin="10,0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            -->
+                <!--<ViewCell>-->
+                <!--
+                                <Grid Padding="0" ColumnDefinitions="auto,50,*" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" Aspect="AspectFit" HeightRequest="20" HorizontalOptions="Start" 
+                                               VerticalOptions="CenterAndExpand" />
+                                        <Label  Text="{Binding Visitdate}" Grid.Column="0"
+                                            TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                                            VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
+                                    </StackLayout>
+                                    <Image Source="{Binding Statusicon}" Grid.Column="1" Aspect="AspectFit"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+                                    <StackLayout Orientation="Horizontal" Grid.Column="2" HorizontalOptions="FillAndExpand" >
+                                        <Label  Text="{Binding Custname}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation" />
+
+                                        <StackLayout HorizontalOptions="End" >
+                                            <Label  Text="{Binding Groupname}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                                            VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                            <Label  Text="{Binding Details}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                                            VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            -->
+                <!--</ViewCell>k-->
+                <!--
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>-->
+
+                <StackLayout VerticalOptions="EndAndExpand" Margin="50,0,50,50">
+                    <pcview:PancakeView  CornerRadius="30" HeightRequest="100" WidthRequest="100" >
+                        <pcview:PancakeView.BackgroundGradientStops>
+                            <pcview:GradientStopCollection>
+                                <pcview:GradientStop Color="#d2ac6a" Offset="0" />
+                                <pcview:GradientStop Color="#e2d086" Offset="0.2" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.4" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.5" />
+                                <pcview:GradientStop Color="#d1ac6b" Offset="0.6" />
+                                <pcview:GradientStop Color="#e2d086" Offset="0.8" />
+                                <pcview:GradientStop Color="#d2ac6a" Offset="1" />
+                            </pcview:GradientStopCollection>
+                        </pcview:PancakeView.BackgroundGradientStops>
+                        <Grid>
+                            <Button x:Name="BtnCheckin" Text="เข้าพบลูกค้า" Clicked="BtnCheckin_Clicked"
+                                    FontAttributes="Bold"  TextColor="White" BackgroundColor="Transparent" />
+                        </Grid>
+                    </pcview:PancakeView>
+                </StackLayout>
+
+            </StackLayout>
+
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             x:Class="smartrg.Customer.GetCustomerPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0.5,0,1,0.08" AbsoluteLayout.LayoutFlags="All" Padding="10,0" >
+                <ImageButton x:Name="BtnBack" Source="ic_back" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="Start"  VerticalOptions="Center" Clicked="BtnBack_Clicked" />
+                <Label x:Name="LblHeader" Text="ข้อมูลลูกค้า" TextColor="White" FontSize="Subtitle" LineBreakMode="TailTruncation" 
+                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="20,0" HorizontalTextAlignment="Center"/>
+
+                <ImageButton x:Name="BtnLocation" Source="ic_getnear" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center"  Margin="5,0" Clicked="BtnLocation_Clicked"/>
+                <ImageButton x:Name="BtnFilter" Source="ic_filter" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center"  Margin="5,0" Clicked="BtnFilter_Clicked"/>
+
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.92" AbsoluteLayout.LayoutFlags="All"  VerticalOptions="FillAndExpand">
+                <!--List of Room-->
+                <StackLayout x:Name="StkSearch" Orientation="Horizontal">
+                    <SearchBar x:Name="Txtsearch" TextColor="Black"  Placeholder="ค้นหาจากชื่อหรือรหัสร้านค้า" PlaceholderColor="LightGray" 
+                               HorizontalOptions="FillAndExpand" SearchButtonPressed="Txtsearch_SearchButtonPressed" />
+                    <ImageButton x:Name="BtnSearch" Source="ic_search" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center" Margin="5,0,30,0" Clicked="BtnSearch_Clicked"/>
+                </StackLayout>
+                <CollectionView x:Name="ListData" SelectionMode="Single" SelectionChanged="ListData_SelectionChanged" Margin="10,0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" >
+                                <Frame Grid.Row="0" BackgroundColor="Bisque" CornerRadius="10" Opacity="0.8"/>
+                                <StackLayout Orientation="Horizontal" Grid.Row="0"  >
+
+                                    <Image Source="{Binding Icon}" Aspect="AspectFit" HeightRequest="30" HorizontalOptions="Start" 
+                                           VerticalOptions="CenterAndExpand" Margin="10,0"/>
+
+                                    <StackLayout Padding="5" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label  Text="{Binding Custname}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation"/>
+
+                                            <Label  Text="{Binding Custgroupname}" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End" LineBreakMode="TailTruncation" FontSize="Micro" />
+
+                                        </StackLayout>
+
+                                        <Label  Text="{Binding Custaddress}" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <!--Filter-->
+            <StackLayout x:Name="StkFilter"  AbsoluteLayout.LayoutBounds="0.5,0,1,1" AbsoluteLayout.LayoutFlags="All" IsVisible="false" >
+
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                           BackgroundColor="LightGray" />
+                    <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                           Opacity="0.8" CornerRadius="20" Margin="10" BackgroundColor="White" />
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="30"  >
+                        <ImageButton Source="ic_close" HorizontalOptions="End" HeightRequest="20" Margin="10,0" Clicked="BtnFilterclose_Clicked" />
+                        <Picker x:Name="Pikfilter" TextColor="RoyalBlue" Title="ระบุกลุ่มลูกค้าที่ต้องการค้นหา" 
+                                TitleColor="Wheat" BackgroundColor="White"
+                                SelectedIndexChanged="Pikfilter_SelectedIndexChanged"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

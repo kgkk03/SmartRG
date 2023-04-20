@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
+             BackgroundImageSource="bg_page" 
+             x:Class="smartrg.Visit.QuestionPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All" 
+                         BackgroundColor="AntiqueWhite" Opacity="0.6"/>
+
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All" Padding="10" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label x:Name="LblHeader" Text="คำถามประกอบการทำงาน" TextColor="RoyalBlue" FontSize="Subtitle" LineBreakMode="TailTruncation"
+                       HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" Margin="20,0" HorizontalTextAlignment="Center"/>
+                    <ImageButton x:Name="BtnSend" Source="ic_send" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center" Margin="5,0,20,0" Clicked="BtnSend_Clicked"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <controls:CircleImage x:Name="ImgCustomer"  HorizontalOptions="Start"
+                     Source="avatar" Aspect ="AspectFit"  HeightRequest="40" WidthRequest="40" Margin="20,0,0,0"/>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20,0">
+                        <Label x:Name="LblCustname" Text="Customer name (Type)" VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Start"  TextColor="Black" LineBreakMode="TailTruncation"/>
+                        <Label x:Name="LblAddress" Text="Address............" HorizontalOptions="FillAndExpand"
+                                   FontSize="Micro" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  
+                                   TextColor="Black" LineBreakMode="TailTruncation" />
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="20,0" VerticalOptions="EndAndExpand">
+                    <Label x:Name="LblWorksumary" TextColor="RoyalBlue" Text=" 0 / 10" FontSize="Micro"
+                           HorizontalOptions="EndAndExpand" VerticalTextAlignment="End" HorizontalTextAlignment="End" />
+                </StackLayout>
+
+                <Label x:Name="LblWorkdetails" TextColor="RoyalBlue" Text="รายละเอียดคำตอบ..." FontSize="Micro" Margin="20,0"
+                           HorizontalOptions="EndAndExpand" VerticalTextAlignment="End" HorizontalTextAlignment="End" LineBreakMode="TailTruncation" />
+
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.8" AbsoluteLayout.LayoutFlags="All"  VerticalOptions="FillAndExpand">
+
+                <CollectionView x:Name="ListData" SelectionMode="Single"  Margin="10,0" SelectionChanged="ListData_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="*" Padding="5">
+                                <Frame Grid.Row="0" BackgroundColor="{Binding Cor}" Opacity="0.4" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                <StackLayout Grid.Row="0" Padding="10,5" >
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Image Source="{Binding Icon}" HeightRequest="10" VerticalOptions="CenterAndExpand" />
+                                        <Label Text="{Binding Question}" VerticalTextAlignment="Center" TextColor="Black" LineBreakMode="TailTruncation" />
+                                    </StackLayout>
+                                    <Label x:Name="LblQuestiondetails" Text="{Binding AnswerAll}" HorizontalOptions="StartAndExpand"
+                                       VerticalTextAlignment="Center" TextColor="RoyalBlue" LineBreakMode="TailTruncation"
+                                       FontSize="Micro" HorizontalTextAlignment="Start" Margin="20,0,0,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

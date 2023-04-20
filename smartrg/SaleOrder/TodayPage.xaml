@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="bg_page"  BackgroundColor="Black"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
+             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="smartrg.SaleOrder.TodayPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!--Header-->
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0.5,0,1,0.08" AbsoluteLayout.LayoutFlags="All" Padding="10,0" >
+                <ImageButton x:Name="BtnMenu" Source="ic_menu" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="Start"  VerticalOptions="Center" Clicked="BtnMenu_Clicked" />
+                <Label x:Name="LblHeader" Text="การสั่งขายสินค้าวันนี้" TextColor="White" FontSize="Subtitle" LineBreakMode="TailTruncation" 
+                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="20,0" HorizontalTextAlignment="Center"/>
+                <ImageButton x:Name="BtnMapview" Source="ic_mapview" HeightRequest="25" BackgroundColor="Transparent" 
+                             HorizontalOptions="End"  VerticalOptions="Center" Margin="5,0,20,0" IsVisible="false"/>
+            </StackLayout>
+
+            <!--Body-->
+            <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,1,0.92" AbsoluteLayout.LayoutFlags="All"  VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CircleImage x:Name="ImgUser"  HorizontalOptions="Start"
+                     Source="avatar" Aspect ="AspectFit"  HeightRequest="80" WidthRequest="80" Margin="20,0,0,0"/>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="20,0">
+                        <Label x:Name="LblFullname" Text="Full name" VerticalTextAlignment="Center" 
+                               HorizontalTextAlignment="Start"  TextColor="Black" CharacterSpacing="1" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                            <Label x:Name="LblTeamname" Text="Team (Role)" HorizontalOptions="FillAndExpand"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  
+                                   TextColor="Black" CharacterSpacing="1" />
+                            <Label x:Name="LblUserID" Text="User code" HorizontalOptions="End" FontSize="Micro"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="End"  
+                                   TextColor="Gray" CharacterSpacing="1" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout >
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Frame Opacity="0.3" BackgroundColor="White" Margin="10,0"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                            <ImageButton Source="ic_back" HorizontalOptions="Start" Clicked="BtnSelectback_Clicked"
+                                 Margin="20,0" HeightRequest="20" BackgroundColor="Transparent" />
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                <Label x:Name="LblTodayHeader" TextColor="Goldenrod" Text="1 มีนาคม 20221" Margin="20,0"
+                           HorizontalOptions="CenterAndExpand" FontSize="Small" VerticalTextAlignment="Center" />
+                                <Button  HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" 
+                                Clicked="BtnSelectDate_Clicked"/>
+                            </Grid>
+                            <ImageButton Source="ic_back" Rotation="180" HorizontalOptions="End" Clicked="BtnSelectnext_Clicked"
+                                 Margin="20,0" HeightRequest="20" BackgroundColor="Transparent" />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                
+                <StackLayout x:Name="StkNodata" HorizontalOptions="FillAndExpand" >
+                    <BoxView HeightRequest="2" />
+                    <Label Text="=== ไม่มีข้อมูลการสั่งขายสินค้าในวันนี้ ===" HorizontalOptions="FillAndExpand" 
+                       VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"  TextColor="Black" CharacterSpacing="1" />
+                    <BoxView HeightRequest="2" />
+                </StackLayout>
+                
+                <CollectionView x:Name="ListData" SelectionMode="Single" SelectionChanged="ListData_SelectionChanged"  Margin="10,0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid Padding="0" ColumnDefinitions="50,50,*" HorizontalOptions="FillAndExpand" >
+                                    <Label  Text="{Binding Showtime}" Grid.Column="0"
+                                        TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
+                                    <Image Source="{Binding Icon}" Grid.Column="1" Aspect="AspectFit" HeightRequest="30" 
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <StackLayout Orientation ="Horizontal" Grid.Column="2" HorizontalOptions="FillAndExpand" >
+                                        <Label  Text="{Binding Custname}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation" />
+
+                                        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                                            <Label  Text="{Binding Totalline,StringFormat='{0} รายการ'}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                            <Label  Text="{Binding Amount,StringFormat='{0:#,##0.00} บาท'}" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center" 
+                                        VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="Goldenrod" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout VerticalOptions="EndAndExpand" Margin="50,0,50,50">
+                    <pcview:PancakeView  CornerRadius="30" HeightRequest="100" WidthRequest="100" >
+                        <pcview:PancakeView.BackgroundGradientStops>
+                            <pcview:GradientStopCollection>
+                                <pcview:GradientStop Color= "Gold" Offset="0" />
+                                <pcview:GradientStop Color="Goldenrod" Offset="0.3" />
+                                <pcview:GradientStop Color="Goldenrod" Offset="0.5" />
+                                <pcview:GradientStop Color="Goldenrod" Offset="0.7" />
+                                <pcview:GradientStop Color="Gold" Offset="1" />
+                            </pcview:GradientStopCollection>
+                        </pcview:PancakeView.BackgroundGradientStops>
+                        <Grid>
+                            <Button x:Name="BtnCheckin" Text="สั่งขายสินค้า" FontAttributes="Bold" TextColor="White" BackgroundColor="Transparent" Clicked="BtnCheckin_Clicked" />
+                        </Grid>
+                    </pcview:PancakeView>
+                </StackLayout>
+
+            </StackLayout>
+
+
+            <!-- ========= AidWaiting =========== -->
+            <StackLayout x:Name="Stk_AidWaitingBk"  AbsoluteLayout.LayoutFlags ="All"  AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="False" BackgroundColor="Black" Opacity="0.8"/>
+            <StackLayout x:Name="Stk_AidWaiting" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsVisible="False">
+                <ActivityIndicator x:Name="AidWaiting" IsRunning="true" />
+                <Label x:Name="LblStatus" Text="กำลังตรวจสอบข้อมูล..." HorizontalOptions="CenterAndExpand" TextColor="White"/>
+                <ProgressBar x:Name="Prgvalue" ProgressColor="#ebf5e4" Progress="1" Margin="40,0" Opacity="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
